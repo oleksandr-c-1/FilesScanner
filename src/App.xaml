@@ -1,0 +1,11 @@
+﻿<Application x:Class="FilesScaner.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:FilesScanner.Converters"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <converters:BytesConverter x:Key="BytesConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,63 @@
+﻿<Window x:Class="FilesScanner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:filesScanner="clr-namespace:FilesScanner"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="Files Scanner"
+        Width="800"
+        Height="450"
+        d:DataContext="{d:DesignInstance filesScanner:MainWindowViewModel}"
+        ResizeMode="CanResize"
+        mc:Ignorable="d">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0"
+                Grid.Column="0"
+                Width="150"
+                Height="30"
+                HorizontalAlignment="Left"
+                Command="{Binding StartScanCommand}"
+                Content="Start Search" />
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="0,10,0,0"
+                    Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="Select Drive: " />
+            <ComboBox Margin="5,0,0,0"
+                      ItemsSource="{Binding Drives, Mode=OneWay}"
+                      SelectedItem="{Binding SelectedDrive, Mode=TwoWay}" />
+
+        </StackPanel>
+
+        <DataGrid Grid.Row="2"
+                  Grid.Column="0"
+                  MinWidth="500"
+                  MinHeight="350"
+                  MaxHeight="350"
+                  Margin="0,10,0,0"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding FoldersModels}"
+                  VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="290"
+                                    Binding="{Binding Path=Path}"
+                                    Header="Path" />
+                <DataGridHyperlinkColumn Width="120"
+                                         Binding="{Binding Path=FilesCount}"
+                                         Header="Files Count" />
+                <DataGridTextColumn Width="120"
+                                    Binding="{Binding Path=FilesSize, Converter={StaticResource BytesConverter}}"
+                                    Header="Files Size" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
