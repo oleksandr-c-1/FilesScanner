@@ -1,4 +1,4 @@
-﻿<Application x:Class="FilesScaner.App"
+﻿<Application x:Class="FilesScanner.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converters="clr-namespace:FilesScanner.Converters"

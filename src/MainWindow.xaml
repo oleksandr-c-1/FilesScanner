@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:filesScanner="clr-namespace:FilesScanner"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:FilesScanner.Helpers"
         Title="Files Scanner"
         Width="800"
         Height="450"
@@ -27,13 +28,13 @@
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentScanMode}" Value="{x:Static filesScanner:ScanMode.CanStartScan}">
+                            <DataTrigger Binding="{Binding CurrentScanMode}" Value="{x:Static helpers:ScanMode.CanStartScan}">
                                 <Setter Property="Content" Value="Start Scan" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentScanMode}" Value="{x:Static filesScanner:ScanMode.Paused}">
+                            <DataTrigger Binding="{Binding CurrentScanMode}" Value="{x:Static helpers:ScanMode.Paused}">
                                 <Setter Property="Content" Value="Resume Scan" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentScanMode}" Value="{x:Static filesScanner:ScanMode.Scanning}">
+                            <DataTrigger Binding="{Binding CurrentScanMode}" Value="{x:Static helpers:ScanMode.Scanning}">
                                 <Setter Property="Content" Value="Pause Scan" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -47,7 +48,6 @@
                     Command="{Binding CancelScanCommand}"
                     Content="Cancel Scan" />
         </StackPanel>
-
 
 
         <StackPanel Grid.Row="1"
@@ -67,10 +67,13 @@
                   Grid.Column="0"
                   MinWidth="500"
                   MinHeight="350"
-                  MaxHeight="350"
+                  MaxHeight="550"
                   Margin="0,10,0,0"
                   AutoGenerateColumns="False"
+                  EnableColumnVirtualization="True"
+                  EnableRowVirtualization="True"
                   ItemsSource="{Binding FoldersModels}"
+                  ScrollViewer.CanContentScroll="True"
                   VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="290"

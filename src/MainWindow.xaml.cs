@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using FilesScanner.Services;
 
-namespace FilesScanner; 
+namespace FilesScanner;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
@@ -8,6 +9,6 @@ namespace FilesScanner;
 public partial class MainWindow : Window {
     public MainWindow() {
         InitializeComponent();
-        DataContext = new MainWindowViewModel();
+        DataContext = ApplicationServiceLocator.GetService<MainWindowViewModel>();
     }
 }
