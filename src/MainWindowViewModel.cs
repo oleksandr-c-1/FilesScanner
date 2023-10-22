@@ -16,7 +16,6 @@ public partial class MainWindowViewModel : ObservableObject {
     readonly ILogger<MainWindowViewModel> _logger;
     readonly IDiskService _diskService;
     readonly PauseTokenSource _pauseTokenSource = new();
-    readonly ManualResetEventSlim _scanCancellationManualResetEventSlim = new(false);
     CancellationTokenSource _scanCancellationTokenSource;
 
     [ObservableProperty] string[] _drives;
@@ -59,7 +58,6 @@ public partial class MainWindowViewModel : ObservableObject {
         try {
             if (!_scanCancellationTokenSource.IsCancellationRequested) {
                 _scanCancellationTokenSource.Cancel();
-                _scanCancellationManualResetEventSlim.Wait(_scanCancellationTokenSource.Token);
             }
         }
         catch (OperationCanceledException) {
