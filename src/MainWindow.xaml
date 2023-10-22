@@ -17,13 +17,38 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0"
-                Grid.Column="0"
-                Width="150"
-                Height="30"
-                HorizontalAlignment="Left"
-                Command="{Binding StartScanCommand}"
-                Content="Start Search" />
+        <StackPanel Grid.Row="0"
+                    Grid.Column="0"
+                    Orientation="Horizontal">
+            <Button Width="150"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    Command="{Binding StartScanCommand}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CurrentScanMode}" Value="{x:Static filesScanner:ScanMode.CanStartScan}">
+                                <Setter Property="Content" Value="Start Scan" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CurrentScanMode}" Value="{x:Static filesScanner:ScanMode.Paused}">
+                                <Setter Property="Content" Value="Resume Scan" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CurrentScanMode}" Value="{x:Static filesScanner:ScanMode.Scanning}">
+                                <Setter Property="Content" Value="Pause Scan" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Width="150"
+                    Height="30"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    Command="{Binding CancelScanCommand}"
+                    Content="Cancel Scan" />
+        </StackPanel>
+
+
 
         <StackPanel Grid.Row="1"
                     Grid.Column="0"
