@@ -95,24 +95,6 @@ public class DiskService : IDiskService {
         },
                          localSize => Interlocked.Add(ref totalFilesSize, localSize));
 
-        //foreach (var file in files) {
-        //    try {
-        //        var fileInfo = new FileInfo(file);
-        //        if (!fileInfo.Exists) {
-        //            continue;
-        //        }
-
-        //        totalFilesSize += fileInfo.Length;
-
-        //        if (!hasAppliedFilters && _filters.Any(filter => filter(fileInfo))) {
-        //            hasAppliedFilters = true;
-        //        }
-        //    }
-        //    catch (Exception) {
-        //        // ignore
-        //    }
-        //}
-
         return hasAppliedFilters
                    ? new FolderModel {
                        FilesCount = filesCount,
